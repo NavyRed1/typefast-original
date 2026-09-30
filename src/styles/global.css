@@ -1,0 +1,157 @@
+@import '@fontsource/press-start-2p/400.css';
+@import '@fontsource/vt323/400.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #05060a;
+  color: #f5f7ff;
+  font-family: 'VT323', monospace;
+  overflow: hidden;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+/* Everything that should read as pixel art stays crisp when scaled. */
+.pixel-art,
+.pixel-art img,
+canvas {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+::selection {
+  background: #34d3ff;
+  color: #05060a;
+}
+
+/* Thin pixel-style scrollbars for overflowing panels (profile/leaderboard). */
+.pixel-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.pixel-scroll::-webkit-scrollbar-track {
+  background: #0a0c14;
+}
+.pixel-scroll::-webkit-scrollbar-thumb {
+  background: #2a3042;
+  border: 2px solid #0a0c14;
+}
+
+@keyframes tq-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.tq-caret {
+  animation: tq-blink 1s step-end infinite;
+}
+
+@keyframes tq-shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-3px, 2px);
+  }
+  40% {
+    transform: translate(3px, -2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(2px, 2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.tq-shake {
+  animation: tq-shake 260ms linear;
+}
+
+@keyframes tq-flash {
+  0% {
+    filter: brightness(1) saturate(1);
+  }
+  30% {
+    filter: brightness(2.4) saturate(0) drop-shadow(0 0 6px #f85252);
+  }
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+}
+.tq-flash {
+  animation: tq-flash 180ms ease-out;
+}
+
+@keyframes tq-float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-38px);
+    opacity: 0;
+  }
+}
+.tq-float {
+  animation: tq-float-up 700ms ease-out forwards;
+}
+
+@keyframes tq-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.tq-pop {
+  animation: tq-pop 240ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tq-shake,
+  .tq-flash,
+  .tq-float,
+  .tq-pop {
+    animation: none !important;
+  }
+}
+
+.reduced-motion .tq-shake,
+.reduced-motion .tq-flash,
+.reduced-motion .tq-float,
+.reduced-motion .tq-pop {
+  animation: none !important;
+}
